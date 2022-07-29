@@ -1,0 +1,25 @@
+<table border="1">
+  <thead>
+    <tr>
+       <th>First Name</th>
+       <th>Last Name</th>
+       <th>Email</th>
+       <th>Sales Volume</th>
+       <th>Met Quota?</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let tempSalp of salesPersonList" [ngClass]="{'highlight': tempSalesPerson.salesVolume >= 500}">
+      <td>{{tempSalp.firstName}}</td>
+      <td>{{tempSalp.lastName}}</td>
+      <td>{{tempSalp.email}}</td>
+      <td>{{tempSalp.salesVolume}}</td>
+      <td>
+        <div *ngIf= "tempSalp.salesVolume > 500; else myElseBlock" >
+          Yes
+        </div>
+        <ng-template #myElseBlock>No</ng-template>
+      </td>
+    </tr>
+  </tbody>
+</table>
