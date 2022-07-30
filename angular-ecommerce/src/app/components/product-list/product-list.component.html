@@ -1,0 +1,3 @@
+<p *ngFor= "let tempProduct of products"><!--products defined in ts file-->
+  {{tempProduct.name}}: {{ tempProduct.unitPrice | currency:'USD'}}
+</p>
