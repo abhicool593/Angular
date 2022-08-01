@@ -1,0 +1,366 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<header>
+    <button> <mat-icon>dashboard</mat-icon></button>
+  
+  <aside>
+    <button> <mat-icon>face</mat-icon> </button>
+      <button><mat-icon>search</mat-icon></button>
+    <button> <mat-icon>add_alert</mat-icon></button>
+  </aside>
+</header>
+
+
+<mat-tab-group class="demo-tab-group">
+  <mat-tab label="Site Info">
+    under maintainence!
+  </mat-tab>
+  <mat-tab label="Consumption"  >
+    <div class="demo-tab-content" >
+      <mat-tab-group class="demo-tab-group">
+
+        <mat-tab label="Summary View" >
+            <br><br>
+            <div class="example-container">
+              <span>
+            <mat-form-field>
+              <mat-select placeholder="Customer Name">
+                <mat-option *ngFor="let C of Cust" [value]="C.value">
+                  {{ C.viewValue }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            </span>
+            
+
+          <span>
+            <mat-form-field>
+              <input matInput [matDatepicker]="picker" placeholder="From:">
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker startView="year" [startAt]="startDate"></mat-datepicker>
+            </mat-form-field>
+          </span>
+
+          <span>
+            <mat-form-field>
+              <input matInput [matDatepicker]="picker2" placeholder="TO:">
+              <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+              <mat-datepicker #picker2 startView="year" [startAt]="startDate"></mat-datepicker>
+            </mat-form-field>
+          </span>
+           <button mat-raised-button  >Filter</button>
+            </div>
+            <mat-paginator [length]="100" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]">
+            </mat-paginator>
+            <br><br>
+
+
+            <div class="example-container mat-elevation-z8">
+              <mat-table #table [dataSource]="dataSource" matSort>
+            
+                <!-- Position Column -->
+                <ng-container matColumnDef="position">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header> No. </mat-header-cell>
+                  <mat-cell *matCellDef="let element"> {{element.position}} </mat-cell>
+                </ng-container>
+            
+                <!-- Name Column -->
+                <ng-container matColumnDef="Customer_name">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header> Customer_name </mat-header-cell>
+                  <mat-cell *matCellDef="let element"> {{element.Customer_name}} </mat-cell>
+                </ng-container>
+            
+                <!-- Weight Column -->
+                <ng-container matColumnDef="Month">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header> Month </mat-header-cell>
+                  <mat-cell *matCellDef="let element"> {{element.Month}} </mat-cell>
+                </ng-container>
+            
+                <!-- Symbol Column -->
+                <ng-container matColumnDef="Number_of_sites">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header> Number_of_sites </mat-header-cell>
+                  <mat-cell *matCellDef="let element"> {{element.Number_of_sites}} </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="TotalGridConsumption">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header> TotalGridConsumption </mat-header-cell>
+                  <mat-cell *matCellDef="let element"> {{element.TotalGridConsumption}} </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="Total_DG_Run_Hours">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header> Total_DG_Run_Hours </mat-header-cell>
+                  <mat-cell *matCellDef="let element"> {{element.Total_DG_Run_Hours}} </mat-cell>
+                </ng-container>
+            
+                <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+              </mat-table>
+            </div>
+
+
+            
+            
+        </mat-tab>
+        <mat-tab label="Eligible Sites" >
+          <br>
+          <br>
+          <div class="example-container">
+                  <span>
+                  <mat-form-field>
+                    <input matInput placeholder="Site ID:" value="">
+                  </mat-form-field>
+                  </span>
+          
+                  <mat-form-field>
+                    <mat-select placeholder="Customer Name">
+                      <mat-option *ngFor="let C of Cust" [value]="C.value">
+                        {{ C.viewValue }}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                
+
+                  <span>
+                  <mat-form-field>
+                    <mat-select placeholder="Region">
+                      <mat-option *ngFor="let r of reg" [value]="r.value">
+                        {{ r.viewValue }}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                  </span>
+
+                  
+                    <mat-form-field>
+                      <mat-select placeholder="Sub-Region">
+                        <mat-option *ngFor="let r of reg" [value]="r.value">
+                          {{ r.viewValue }}
+                        </mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  
+                  <span>
+                  <mat-form-field>
+                    <mat-select placeholder="Filter Rule">
+                      <mat-option *ngFor="let r of reg" [value]="r.value">
+                        {{ r.viewValue }}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                  </span>
+
+                  <span>
+                    <mat-form-field>
+                      <input matInput [matDatepicker]="picker3" placeholder="Period">
+                      <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
+                      <mat-datepicker #picker3 startView="year" [startAt]="startDate"></mat-datepicker>
+                    </mat-form-field>
+                  </span>
+
+                    
+                  <mat-checkbox>Edited Record(s)</mat-checkbox>
+                  
+
+
+                  <span>
+                  <button mat-raised-button>Filter</button>
+                  </span>
+
+
+                  
+                <button mat-raised-button (click)="openDialog()"> <mat-icon>launch</mat-icon></button>
+                
+                 
+                <span>    
+                <button mat-raised-button> <mat-icon>refresh</mat-icon></button>
+                </span>
+
+          </div>
+        </mat-tab>
+        <mat-tab label="Sites With Exception" >
+                      <br>
+                      <br>
+                      <div class="example-container">
+                      <span>
+                        <mat-form-field>
+                          <input matInput placeholder="Site ID:" value="">
+                        </mat-form-field>
+                      </span>
+
+                        
+                        <mat-form-field>
+                            <mat-select placeholder="Customer Name">
+                              <mat-option *ngFor="let C of Cust" [value]="C.value">
+                                {{ C.viewValue }}
+                              </mat-option>
+                            </mat-select>
+                          </mat-form-field>
+                        
+                      
+                        <span>
+                        <mat-form-field>
+                          <mat-select placeholder="Region">
+                            <mat-option *ngFor="let r of reg" [value]="r.value">
+                              {{ r.viewValue }}
+                            </mat-option>
+                          </mat-select>
+                        </mat-form-field>
+                        </span>
+                      
+                        
+                          <mat-form-field>
+                            <mat-select placeholder="Sub-Region">
+                              <mat-option *ngFor="let r of reg" [value]="r.value">
+                                {{ r.viewValue }}
+                              </mat-option>
+                            </mat-select>
+                          </mat-form-field>
+                        
+                        <span>
+                        <mat-form-field>
+                          <mat-select placeholder="Filter Rule">
+                            <mat-option *ngFor="let r of reg" [value]="r.value">
+                              {{ r.viewValue }}
+                            </mat-option>
+                          </mat-select>
+                        </mat-form-field>
+                        </span>
+                        
+                        <span>
+                        <mat-form-field>
+                          <mat-select placeholder="Exception Rule">
+                            <mat-option *ngFor="let r of reg" [value]="r.value">
+                              {{ r.viewValue }}
+                            </mat-option>
+                          </mat-select>
+                        </mat-form-field>
+                        </span>
+                      
+                      
+                          <mat-form-field>
+                            <input matInput [matDatepicker]="picker4" placeholder="Period">
+                            <mat-datepicker-toggle matSuffix [for]="picker4"></mat-datepicker-toggle>
+                            <mat-datepicker #picker4 startView="year" [startAt]="startDate"></mat-datepicker>
+                          </mat-form-field>
+                        
+
+                        <span>
+                        <mat-checkbox>Edited Record(s)</mat-checkbox>
+                        </span>
+
+
+                        
+                          <button mat-raised-button>Filter</button>
+                        
+                          <span>                     
+                          <button mat-raised-button>
+                            <mat-icon>refresh</mat-icon>
+                          </button>
+                          </span>
+                      
+                      </div>
+        </mat-tab>
+        <mat-tab label="Rejected Sites">
+            <br>
+            <br>
+            <div class="example-container">
+            
+              <span>
+              <mat-form-field>
+                <input matInput placeholder="Site ID:" value="">
+              </mat-form-field>
+              </span>
+
+              
+                <mat-form-field>
+                  <mat-select placeholder="Customer Name">
+                    <mat-option *ngFor="let C of Cust" [value]="C.value">
+                      {{ C.viewValue }}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              
+            
+              <span>
+              <mat-form-field>
+                <mat-select placeholder="Region">
+                  <mat-option *ngFor="let r of reg" [value]="r.value">
+                    {{ r.viewValue }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+              </span>
+            
+              
+                <mat-form-field>
+                  <mat-select placeholder="Sub-Region">
+                    <mat-option *ngFor="let r of reg" [value]="r.value">
+                      {{ r.viewValue }}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              
+              <span>
+              <mat-form-field>
+                <mat-select placeholder="Filter Rule">
+                  <mat-option *ngFor="let r of reg" [value]="r.value">
+                    {{ r.viewValue }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+              </span>
+              
+                <span>
+                <mat-form-field>
+                  <input matInput [matDatepicker]="picker5" placeholder="Period">
+                  <mat-datepicker-toggle matSuffix [for]="picker5"></mat-datepicker-toggle>
+                  <mat-datepicker #picker5 startView="year" [startAt]="startDate"></mat-datepicker>
+                </mat-form-field>
+                </span>
+              
+               <span> 
+              <mat-checkbox>Edited Record(s)</mat-checkbox>
+              </span>
+
+
+                <button mat-raised-button>Filter</button>
+              
+            </div>
+        </mat-tab>
+        </mat-tab-group>
+    </div>
+  </mat-tab>
+  <mat-tab label="Data Exchange" disabled>
+    
+    <div class="demo-tab-content">
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla venenatis ante augue. Phasellus volutpat neque ac dui mattis
+      vulputate. Etiam consequat aliquam cursus. In sodales pretium ultrices. Maecenas lectus est, sollicitudin consectetur
+      felis nec, feugiat ultricies mi. Aliquam erat volutpat. Nam placerat, tortor in ultrices porttitor, orci enim rutrum
+      enim, vel tempor sapien arcu a tellus.
+    </div>
+  </mat-tab>
+  <mat-tab label="MSA Configuration" disabled>
+    No content
+  </mat-tab>
+  <mat-tab label="Consumption Report" disabled>
+    <div class="demo-tab-content">
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla venenatis ante augue. Phasellus volutpat neque ac dui mattis
+      vulputate. Etiam consequat aliquam cursus. In sodales pretium ultrices. Maecenas lectus est, sollicitudin consectetur
+      felis nec, feugiat ultricies mi. Aliquam erat volutpat. Nam placerat, tortor in ultrices porttitor, orci enim rutrum
+      enim, vel tempor sapien arcu a tellus.
+      <br />
+      <br /> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla venenatis ante augue. Phasellus volutpat neque ac dui
+      mattis vulputate. Etiam consequat aliquam cursus. In sodales pretium ultrices. Maecenas lectus est, sollicitudin consectetur
+      felis nec, feugiat ultricies mi. Aliquam erat volutpat. Nam placerat, tortor in ultrices porttitor, orci enim rutrum
+      enim, vel tempor sapien arcu a tellus.
+    </div>
+  </mat-tab>
+  
+  <mat-tab label="EBS Integration" disabled>
+    No content
+  </mat-tab>
+</mat-tab-group>
+
+
+
+
+<router-outlet></router-outlet>

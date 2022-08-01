@@ -1,0 +1,26 @@
+.demo-tab-group {
+  border: 1px solid #e8e8e8;
+  color: blue; 
+  height: 620px;
+}
+
+.demo-tab-content {
+  padding: 16px;
+}
+.example-container {
+  display: inline; 
+  flex-direction: column;
+}
+
+.example-container{
+  width: 20%;
+}
+
+span {
+    padding-left: 50px;
+    padding-right: 50px;
+}
+.example-container mat-elevation-z8{
+    width: 100%;
+}
+
